@@ -10,9 +10,9 @@
 			 	<input type="label" id="dev" value="微行" fontSize="18"  color="#FFFFFF" />
 			</div>
 			<div  width="100%" height="100%"  vAlign="middle" hAlign="right" >
-				<img  width="26" height="26" tag="timg" src="/image/search.png" onClick='scanCode'/>
+				<img  width="26" height="26" tag="timg" src="/image/search.png" onClick='goMain'/>
 				<input type="label" id="other" value="     " fontSize="18" />  
-				<img  width="26" height="26" tag="timg" src="/image/configs.png" onClick='goMain'/>   
+				<img  width="26" height="26" tag="timg" src="/image/configs.png" onClick='goPass'/>   
 				<input type="label" id="other" value="     " fontSize="18" />
 				<img  width="26" height="26" tag="timg" src="/image/account.png" onClick='showDailog'/> 
 			</div>
@@ -124,8 +124,11 @@ mainSilde.addEvent("onChange",function(o,n){
 	function scanCode(){
 		Utils.startBarCodeScanner(function(content){alert(content)});
 	}
-	function goMain(){
+	function goPass(){
 		Emp.page.goTo("/security/password.html");
+	}
+	function goMain(){
+		Emp.page.goTo("/main.html");
 	}
 </script>
 </HTML>

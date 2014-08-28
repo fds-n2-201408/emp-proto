@@ -4,21 +4,21 @@
 <title>Hello World</title>
 </HEAD>
 <BODY>
-<input type="label" value="hello"/>
+	<div  width="100%" height="100%" layout="VBox" vAlign="middle" hAlign="center" >
+		<input type="button" value="hello" onClick="postback"/>
+	</div>
 </BODY>
 <SCRIPT>
-    var f=new $M.File("/weixingconfig.xml");
-    if(!f.exists()){
-    	f.createFile();
-
-    	var strl = "";
-    	Utils.startBarCodeScanner(function(content){strl = content});
-    	
-    	$M.FileUtil.writeFile(f.getFilePath(), strl);
-    	alert(fstrl);
+    
+    function postback(){
+    	var ajax = new $M.Ajax();
+		ajax.addParam({key:'person',value:'m'});
+		ajax.setAction("http://192.168.10.128:8080/default/com.primeton.eos.newcomponent.newbiz.biz.ext");
+		ajax.submit(function(result){backup(result)},function(error){alert(error);});
     }
-    else{
-    	alert($M.FileUtil.readFile(f.getFilePath()));
+    function backup(result){
+    	var mm =  eval('(' + result + ')');;
+    	alert(mm.back);
     }
 
 </SCRIPT>
