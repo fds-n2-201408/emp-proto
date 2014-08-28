@@ -580,29 +580,31 @@ jsDebug.debug =  function(resource,line,scope,args,evalFunc){
 };
 
 var $jsd = jsDebug.debug;
-Emp.page.setId('_BODY_11910536');
-var _div_28204633 = new Emp.Panel({"id":"_div_28204633","height":"100%","vAlign":"middle","hAlign":"center","layout":"VBox","width":"100%"});
-var _input_11807238 = new Emp.Button({"id":"_input_11807238","value":"hello"});
-_input_11807238.addEvent('onClick',postback);
-_div_28204633.add(_input_11807238);
-Emp.page.add(_div_28204633);
+Emp.page.setId('_BODY_29330543');
+var _div_10291412 = new Emp.Panel({"id":"_div_10291412","height":"100%","vAlign":"middle","hAlign":"center","layout":"VBox","width":"100%"});
+var _input_28227440 = new Emp.Button({"id":"_input_28227440","value":"hello"});
+_input_28227440.addEvent('onClick',postback);
+_div_10291412.add(_input_28227440);
+Emp.page.add(_div_10291412);
 
 
 
-
-$jsd('/bpsplus/src/main.html',13,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);});function postback() { 
-$jsd('/bpsplus/src/main.html',14,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); var ajax = new $M.Ajax(); 
-$jsd('/bpsplus/src/main.html',15,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); ajax.addParam({key:"person", value:"m"}); 
-$jsd('/bpsplus/src/main.html',16,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); ajax.setAction("http://192.168.10.128:8080/default/com.primeton.eos.newcomponent.newbiz.biz.ext"); 
-$jsd('/bpsplus/src/main.html',17,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); ajax.submit(function (result) { 
-$jsd('/bpsplus/src/main.html',17,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); backup(result); 
+$jsd('/bpsplus/src/main.html',14,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);});function postback() { 
+$jsd('/bpsplus/src/main.html',15,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); var ajax = new $M.Ajax(); 
+$jsd('/bpsplus/src/main.html',16,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); ajax.addParam({key:"person", value:"m"}); 
+$jsd('/bpsplus/src/main.html',17,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); ajax.setAction("http://192.168.10.128:8080/default/com.primeton.eos.newcomponent.newbiz.biz.ext"); 
+$jsd('/bpsplus/src/main.html',18,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); ajax.submit(function (result) { 
+$jsd('/bpsplus/src/main.html',18,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); backup(result); 
 }, function (error) { 
-$jsd('/bpsplus/src/main.html',17,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); alert(error); 
+$jsd('/bpsplus/src/main.html',18,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); alert(error); 
 }); 
 } 
-$jsd('/bpsplus/src/main.html',19,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); function backup(result) { 
-$jsd('/bpsplus/src/main.html',20,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); var mm = eval("(" + result + ")"); 
-$jsd('/bpsplus/src/main.html',21,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); alert(mm.back); 
+$jsd('/bpsplus/src/main.html',20,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); function backup(result) { 
+$jsd('/bpsplus/src/main.html',21,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); var mm = eval("(" + result + ")"); 
+$jsd('/bpsplus/src/main.html',22,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); alert(mm.back); 
+} 
+$jsd('/bpsplus/src/main.html',26,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); function mm() { 
+$jsd('/bpsplus/src/main.html',27,this,((typeof(arguments)!="undefined"?arguments:null)),function(__text){return eval(__text);}); alert("hello conflact."); 
 } 
  
 Emp.page.render();

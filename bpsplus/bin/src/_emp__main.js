@@ -1,11 +1,11 @@
-   Emp.page.setId('_BODY_11910536');
-	var _div_28204633 = new Emp.Panel({"id":"_div_28204633","height":"100%","vAlign":"middle","hAlign":"center","layout":"VBox","width":"100%"});
-    var _input_11807238 = new Emp.Button({"id":"_input_11807238","value":"hello"});
-	_input_11807238.addEvent('onClick',postback);
-            _div_28204633.add(_input_11807238);
-               Emp.page.add(_div_28204633);
+   Emp.page.setId('_BODY_29330543');
+	var _div_10291412 = new Emp.Panel({"id":"_div_10291412","height":"100%","vAlign":"middle","hAlign":"center","layout":"VBox","width":"100%"});
+    var _input_28227440 = new Emp.Button({"id":"_input_28227440","value":"hello"});
+	_input_28227440.addEvent('onClick',postback);
+            _div_10291412.add(_input_28227440);
+               Emp.page.add(_div_10291412);
 			
-
+ 
     
     function postback(){
     	var ajax = new $M.Ajax();
@@ -17,6 +17,12 @@
     	var mm =  eval('(' + result + ')');;
     	alert(mm.back);
     }
+    
+    
+    function mm(){
+    	alert("hello conflact.");
+    }
+    
 
 
 
