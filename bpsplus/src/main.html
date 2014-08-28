@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+<title>Hello World</title>
+</HEAD>
+<BODY>
+<input type="label" value="hello"/>
+</BODY>
+<SCRIPT>
+    var f=new $M.File("/weixingconfig.xml");
+    if(!f.exists()){
+    	f.createFile();
+
+    	var strl = "";
+    	Utils.startBarCodeScanner(function(content){strl = content});
+    	
+    	$M.FileUtil.writeFile(f.getFilePath(), strl);
+    	alert(fstrl);
+    }
+    else{
+    	alert($M.FileUtil.readFile(f.getFilePath()));
+    }
+
+</SCRIPT>
+</HTML>

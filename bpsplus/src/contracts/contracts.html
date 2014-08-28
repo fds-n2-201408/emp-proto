@@ -1,0 +1,345 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8" />
+<title>联系人</title>
+</HEAD>
+<BODY>
+	<div  width="100%" height="100%" layout="HBox" >
+		<div  width="10" height="100%"></div>
+		<div  width="100%" height="100%" layout ="VBox">
+		
+			<div width="100%" class="overflow:hidden">
+				<listview id="listview" width="100%" height="100%"
+					enablePullDown="true" onLoadMore="refresh" 
+					onItemLongClick="openSession" >
+				<template>
+					<div width="100%" height="56" layout="VBox">
+						<div width="100%" height="5" ></div>
+						<div width="100%" height="45" layout="hBox">
+							<div width="100" height="100%" vAlign="middle" hAlign="left">
+								<label fontSize="14" tag="ltitle"></label>
+								<img tag="pimg" width="40" height="40"/>
+								<label fontSize="16" value="  "></label>
+								<label fontSize="16" tag="name"></label>
+							</div>
+							<div width="100%" height="100%" vAlign="middle" hAlign="left" layout="HBox" >
+								<label fontSize="18" tag="phonenum" color="#888888" ></label>
+								<label fontSize="16" value="  "></label>
+								<label fontSize="14" tag="dep" color="#bbbbbb" ></label>
+							</div>
+						</div>
+						<div width="100%" height="5" ></div>
+						<div width="100%" height="0.5" backgroundColor="#AAAAAA"></div>
+					</div>
+				</template>
+				</listview>
+			</div>
+		</div>
+		<div  width="24" height="100%">
+			<listview id="a2zlist" width="100%" height="100%" >
+			<template>
+				<div width="100%" height="19" layout="VBox" vAlign="middle" hAlign="center" >
+					<label fontSize="16" tag="a2z" color="#bbbbbb" ></label>
+				</div>
+			</template>
+			</listview>
+		</div>
+	</div>
+
+</BODY>
+<SCRIPT>
+
+var items = [
+	{
+		ltitle: "",
+		pimg: "/image/account.png",
+		name : "我",
+		phonenum : "18610380209",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "C",
+		pimg: " ",
+		name : "",
+		phonenum : "",
+		dep: "",
+		action : ""
+	},
+	{
+		ltitle: "",
+		pimg: "/image/1.jpg",
+		name : "曹立磊",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "",
+		pimg: "/image/2.jpg",
+		name : "曹宗伟",
+		phonenum : "18611735102",
+		dep: "[产品部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "",
+		pimg: "/image/5.jpg",
+		name : "曹小琪",
+		phonenum : "18611735102",
+		dep: "[华东技术一部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "D",
+		pimg: " ",
+		name : "",
+		phonenum : "",
+		dep: "",
+		action : ""
+	},
+	{
+		ltitle: "",
+		pimg: "/image/4.png",
+		name : "邸学寅",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "F",
+		pimg: " ",
+		name : "",
+		phonenum : "",
+		dep : "",
+		action : ""
+	},
+	{
+		ltitle: "",
+		pimg: "/image/5.jpg",
+		name : "范星星",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "",
+		pimg: "/image/8.jpg",
+		name : "范鑫鹏",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "H",
+		pimg: " ",
+		name : "",
+		phonenum : "",
+		dep : "",
+		action : ""
+	},
+	{
+		ltitle: "",
+		pimg: "/image/6.jpg",
+		name : "黄林",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "",
+		pimg: "/image/7.png",
+		name : "胡福来",
+		phonenum : "18611735102",
+		dep: "[通用事业部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "",
+		pimg: "/image/7.png",
+		name : "郝振明",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "",
+		pimg: "/image/9.jpg",
+		name : "郝艳峰",
+		phonenum : "18611735102",
+		dep: "[产品部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "L",
+		pimg: " ",
+		name : "",
+		phonenum : "",
+		dep : "",
+		action : ""
+	},
+	{
+		ltitle: "",
+		pimg: "/image/5.jpg",
+		name : "刘春力",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "",
+		pimg: "/image/6.jpg",
+		name : "刘晶",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "S",
+		pimg: " ",
+		name : "",
+		phonenum : "",
+		dep : "",
+		action : ""
+	},
+	{
+		ltitle: "",
+		pimg: "/image/4.png",
+		name : "宋岳辛",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	},
+	{
+		ltitle: "X",
+		pimg: " ",
+		name : "",
+		phonenum : "",
+		dep : "",
+		action : ""
+	},
+	{
+		ltitle: "",
+		pimg: "/image/5.jpg",
+		name : "徐茂贵",
+		phonenum : "18611735102",
+		dep: "[华北技术二部]",
+		action : "/contracts/contractDetail.html"
+	}
+];
+listview.setItems(items);
+listview.addEvent("onItemClick", function(row, tag, data) {
+	Emp.page.goTo(data.action, {name : data.name});
+});
+
+<!-- 右边列表更新 -->
+var a2zitem = [
+	{
+		a2z: "↑"
+	},
+	{
+		a2z: "☆"
+	},
+	{
+		a2z: "A"
+	},
+	{
+		a2z: "B"
+	},
+	{
+		a2z: "C"
+	},
+	{
+		a2z: "D"
+	},
+	{
+		a2z: "E"
+	},
+	{
+		a2z: "F"
+	},
+	{
+		a2z: "G"
+	},
+	{
+		a2z: "H"
+	},
+	{
+		a2z: "I"
+	},
+	{
+		a2z: "J"
+	},
+	{
+		a2z: "K"
+	},
+	{
+		a2z: "L"
+	},
+	{
+		a2z: "M"
+	},
+	{
+		a2z: "N"
+	},
+	{
+		a2z: "O"
+	},
+	{
+		a2z: "P"
+	},
+	{
+		a2z: "Q"
+	},
+	{
+		a2z: "R"
+	},
+	{
+		a2z: "S"
+	},
+	{
+		a2z: "T"
+	},
+	{
+		a2z: "U"
+	},
+	{
+		a2z: "V"
+	},
+	{
+		a2z: "W"
+	},
+	{
+		a2z: "X"
+	},
+	{
+		a2z: "Y"
+	},
+	{
+		a2z: "Z"
+	},
+	{
+		a2z: "#"
+	}
+];
+a2zlist.setItems(a2zitem);
+
+<!-- 下拉刷新 -->
+function refresh(eventype){
+	if(eventype == "pullDown" ){
+		listview.resetScroller();
+		alert("没有更新");
+	}
+};
+		
+function openSession(){
+	Emp.page.goTo("/message/session.html");
+}
+
+function searchList(){
+	alert("查找联系人");
+}
+
+
+</SCRIPT>
+</HTML>

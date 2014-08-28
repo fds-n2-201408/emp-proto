@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <appId>bpsplus</appId><!--应用id  -->
+    <appName>微行</appName><!--名称  -->
+    <description></description><!--应用描述信息  -->
+    <date>2014-08-18</date><!--创建日期  -->
+    <homepage >/index.html</homepage><!--首页地址  -->
+    <icon>/logo.png</icon><!--应用图标  -->
+    <minClientVersion>1.0</minClientVersion><!--客户端最低版本号  -->
+    <appVersion>1.0</appVersion><!-- 当前版本号-->
+    <updateTime></updateTime><!--版本更新时间 -->
+    <patchVersion></patchVersion><!--补丁版本号  -->
+</config>

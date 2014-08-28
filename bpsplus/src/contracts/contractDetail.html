@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+<title>contractDetail</title>
+</HEAD>
+<BODY>
+<div width="100%" layout="hBox" height="40" backgroundColor="#bbbbbb">
+  <div  height="100%" width="100" vAlign="middle" hAlign="center">
+  	<input type="label" value="曹立磊 "  />
+  </div>
+  <div  height="100%"  vAlign="middle" hAlign="right">
+  	<input type="label" value=" | " />
+  </div>
+  <div  height="100%" vAlign="middle" hAlign="right">
+  	<input type="label" value="手机号有误请戳我 " onClick="remark" />
+  </div>
+  <div  height="100%"  vAlign="middle" hAlign="right">
+  	<input type="label" value=" | "  />
+  </div>
+  <div  height="100%" width="100%" vAlign="middle" hAlign="right">
+  	<img id="pentacleimg" src="/image/phone/pentacle1.png" width="30" height="30" onClick="common" />
+  </div>
+</div>
+	<div width="100%" height="100%">
+		<listview id="listviewdetail" width="100%" height="100%" dividerVisible="true">
+			<template>
+				<div width="100%" height="40" layout="hBox">
+					<div width="60" height="100%" vAlign="middle" hAlign="left">
+						<label fontSize="20" tag="name" color="#000000"></label>
+					</div>
+					<div width="200" height="100%" vAlign="middle" hAlign="left">
+						<label fontSize="20" tag="value" color="#000000" ></label>
+					</div>
+					<div width="100%" height="100%" vAlign="middle" hAlign="right">
+							<img  width="35" height="35" tag="operimg" />
+					</div>
+				</div>
+			</template>
+		</listview>
+	</div>
+</BODY>
+<SCRIPT>
+var index = 0;
+var itemscll = [
+	{
+		name : "部门",
+		value : "华北技术二部",
+		operimg: ""
+	},
+	{
+		name : "手机",
+		value : "18611735102",
+		operimg: "/image/phone/phone.png"
+	},
+	{
+		name : "办公",
+		value : "01062698005",
+		operimg: "/image/phone/tel.png"
+	},
+	{
+		name : "邮箱",
+		value: "caoll@primeton.com",
+		operimg: "/image/phone/email.png"
+	},
+	{
+		name : "QQ",
+		value : "1010100",
+		operimg: "/image/phone/QQM.png"
+	},
+	{
+		name : "微信",
+		value : "10090980",
+		operimg: "/image/phone/chat.png"
+	},
+	{
+		name : "主页",
+		value : "http://primeton.com",
+		operimg: "/image/phone/network.png"
+	}
+
+];
+listviewdetail.setItems(itemscll);
+
+listviewdetail.reloadData();
+ 
+ 
+listviewdetail.addEvent("onItemClick", function(row, tag, data) {
+	if(row=="1" || row=="2"){
+		<!--  拨打电话 -->
+		Utils.tel(data.value);
+	}else if(row=="3"){
+		<!-- 发送邮件 -->
+		var email = new $M.Email();
+  		email.setTo(data.value); 
+  		email.setCc("caoll@primeton.com");
+  		email.setBcc("caoll@primeton.com");
+  		email.setSubject("emp测试");
+  		email.setBody("通信录邮件发送测试");
+  		email.show();
+	}else if(row=="6"){
+		Emp.page.goTo(data.action);
+		
+	}else{
+		Emp.page.goTo(data.action, {name : data.name});
+	}
+});
+	
+function remark(){
+	alert(itemscll[1].value+"有误，系统已标记，会通知维护人员");
+};
+
+function common(){
+	var count= (index++)%2;
+	if(count == 0){
+		pentacleimg.setSrc("/image/phone/pentacle2.png");
+		alert("已添加到您的常用联系人中");
+	}else{
+		pentacleimg.setSrc("/image/phone/pentacle1.png");
+		alert("取消关联");
+	}
+}
+
+</SCRIPT>
+</HTML>

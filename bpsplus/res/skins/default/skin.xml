@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<skin>
+    <id>default</id><!-- 风格id  -->
+    <name>缺省风格</name><!-- 风格名称  -->
+    <description></description><!-- 风格描述信息  -->
+    <icon >res:image/logo.png</icon><!-- 风格图标  -->
+</skin>

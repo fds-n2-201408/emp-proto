@@ -1,0 +1,212 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+<title>nav+listview</title>
+</HEAD>
+<BODY>
+	<div width="100%" height="50" layout="HBox" backgroundColor="#2A6E91">
+		<div width="6" height="100%" vAlign="middle" hAlign="left">
+		</div>
+		<div width="300" height="100%" vAlign="middle" hAlign="left">
+			<img  width="30" height="30" tag="timg"  src="/image/back.png" onClick="goBack"/>
+			<label fontSize="18" tag="title" color="#DDDDDD" value="流程追踪" onClick="goBack"></label>
+		</div>
+		<div width="100%" height="100%" vAlign="middle" hAlign="right">
+			<img  width="30" height="30" tag="timg"  src="/image/config.png" onClick="goBack"/>
+		</div>
+		<div width="8" height="100%" vAlign="middle" hAlign="left">
+		</div>
+	</div>
+	<div width="100%" height="40" layout="VBox">
+		<div width="100%" height="100%" vAlign="middle" hAlign="left" layout="HBox">
+			<div  width="10" height="100%" vAlign="middle" hAlign="center" ></div>
+			<input type="date" name="date" value="2014-01-01" width="170" height="40"/>
+			<div  width="10" height="100%" vAlign="middle" hAlign="center" ></div>
+			<input type="text" name="search" height="60" width="130" />
+			<img  width="40" height="40" src="/flow/search.jpg"/>
+			<div  width="20" height="100%" vAlign="middle" hAlign="center" ></div>
+		</div>
+		<div width="100%" height="2" backgroundColor="#CCCCCC"></div>
+	</div>
+	<div width="100%" height="100%" layout="VBox">
+		<listview id="listview" width="100%" height="100%" enablePullDown="true" onLoadMore="refresh">
+			<template>
+				<div width="100%" height="60" layout="VBox">
+					<div width="100%" height="100%" vAlign="middle" hAlign="left" layout="HBox">
+						<div  width="10" height="100%" vAlign="middle" hAlign="center" ></div>
+						<div  width="40" height="100%" vAlign="middle" hAlign="left" >
+							<img  width="40" height="40" tag="timg"/>
+						</div>
+						<div  width="15" height="100%" vAlign="top" hAlign="left" >
+							<label fontSize="15" tag="new" color="#FF0000"></label>
+						</div>
+						<div width="100%" height="60" layout="VBox">
+							<div width="100%" height="30" layout="HBox">
+								<div  width="100%" height="100%" vAlign="bottom" hAlign="left" >
+									<label fontSize="16" tag="name" color="#000000"></label>
+								</div>
+								<div  width="70" height="100%" vAlign="middle" hAlign="right" >
+									<label fontSize="14" tag="ldate" color="#bbbbbb"></label>
+								</div>
+							</div>
+							<div  width="100%" height="100%" vAlign="middle" hAlign="left" >
+									<label fontSize="15" tag="lmessage" color="#bbbbbb"></label>
+							</div>
+						</div>
+					</div>
+					<div width="100%" height="0.5" backgroundColor="#AAAAAA"></div>
+				</div>
+			</template>
+		</listview>
+		<div width="100%" height="0.5" backgroundColor="#999999"></div>
+	</div>
+</BODY>
+<SCRIPT>
+var items = [
+	{
+		timg : "/flow/hetong.png",
+		name : "合同 等待放款 ￥10,231" ,
+		new : "●",
+		ldate : "刚刚 14:30",
+		lmessage : "完成75%，预计还有1天时间",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/hetong.png",
+		name : "合同 等待放款 ￥23,231" ,
+		new : "●",
+		ldate : "刚刚 14:31",
+		lmessage : "您的一笔报销款与昨天已经通过审批……",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/loan.png",
+		name : "贷款 等待授信 ￥990,231" ,
+		new : "●",
+		ldate : "刚刚 14:31",
+		lmessage : "系统马上建设完毕，请关注。",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/loan.png",
+		name : "贷款 发起  ￥3,000,231" ,
+		new : "",
+		ldate : "今天 9:45",
+		lmessage : "您的一笔报销款与昨天已经通过审批……",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/loan.png",
+		name : "贷款 央行征信  ￥3,000,231" ,
+		new : "",
+		ldate : "今天 9:30",
+		lmessage : "客户'雷军'已经通过审批，等待联系……",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/check.jpg",
+		name : "付款 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "今天 9:10",
+		lmessage : "今天共有10个新服务上线，请关注。",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/hetong.png",
+		name : "合同 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "今天 9:00",
+		lmessage : "贷款'0002312'存在兑付风险，请关注",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/xiangmu.jpg",
+		name : "项目 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "今天 9:00",
+		lmessage : "春节放假，从除夕到正月十五共20天…",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/xiangmu.jpg",
+		name : "项目 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "昨天",
+		lmessage : "对外经贸信托还有几个事情没有处理。",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/check.jpg",
+		name : "付款 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "前天",
+		lmessage : "测试环境即将完成。",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/loan.png",
+		name : "贷款 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "前天",
+		lmessage : "测试环境即将完成。",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/xiangmu.jpg",
+		name : "项目 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "前天",
+		lmessage : "中信银行的支持这个月底到期。",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/hetong.png",
+		name : "合同 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "前天",
+		lmessage : "流程平台启动存在问题。",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/xiangmu.jpg",
+		name : "项目 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "前天",
+		lmessage : "没事儿打个台球去？",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/hetong.png",
+		name : "合同 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "很早",
+		lmessage : "测试脚本刚刚完成。",
+		action : "/flowTrace/flowtrace.html"
+	},
+	{
+		timg : "/flow/check.jpg",
+		name : "付款 等待放款 ￥10,231" ,
+		new : "",
+		ldate : "很早",
+		lmessage : "去美国的DEMO方案请尽快提交。",
+		action : "/flowTrace/flowtrace.html"
+	}
+];
+
+listview.setItems(items);
+listview.addEvent("onItemClick", function(row, tag, data) {
+	log(data.action);
+	Emp.page.goTo(data.action);
+});
+function goBack(){
+	Emp.page.goBack();
+}
+<!-- 下拉刷新 -->
+function refresh(eventype){
+	if(eventype == "pullDown" ){
+		listview.resetScroller();
+		alert("没有更新");
+	}
+};
+</SCRIPT>
+</HTML>

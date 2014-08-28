@@ -1,0 +1,129 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+<title>mailList</title>
+</HEAD>
+<BODY>
+<div width="100%" height="100%" layout="VBox">
+	<div width="100%" height="50" layout="HBox" backgroundColor="#2A6E91">
+		<div width="6" height="100%" vAlign="middle" hAlign="left">
+		</div>
+		<div width="300" height="100%" vAlign="middle" hAlign="left">
+			<img  width="30" height="30" tag="timg"  src="/image/back.png" onClick="goBack"/>
+			<label fontSize="18" tag="title" color="#DDDDDD" value="邮件推送通知" onClick="goBack"></label>
+		</div>
+		<div width="100%" height="100%" vAlign="middle" hAlign="right">
+			<img  width="30" height="30" tag="timg"  src="/image/config.png" onClick="goBack"/>
+		</div>
+		<div width="8" height="100%" vAlign="middle" hAlign="left">
+		</div>
+	</div>
+	<div width="100%" height="100%" backgroundColor="#DDDDDD" >
+		<listview id="listview" width="100%" height="100%">
+			<template>
+				<div width="100%" height="180" layout="VBox" >
+					<div width="100%" height="40" layout="HBox" >
+						<div width="80" height="100%" vAlign="middle" hAlign="center">
+							<label fontSize="20" tag="lspace" color="#000000"></label>
+						</div>
+						<div width="100%" height="100%" vAlign="middle" hAlign="center">
+							<label fontSize="14" tag="time" color="#111111"></label>
+						</div>
+						<div width="80" height="100%" vAlign="middle" hAlign="center">
+							<label fontSize="20" tag="rspace" color="#000000"></label>
+						</div>
+					</div>
+
+					<div width="100%" height="100%" layout="HBox" >
+						<div width="10" height="100%" vAlign="middle" hAlign="center">
+							<label fontSize="20" tag="lspace" color="#000000"></label>
+						</div>
+						<div width="100%" height="100%" layout="VBox" backgroundColor="#FFFFFF" >
+							<div width="100%" height="100%" vAlign="middle" hAlign="left" >
+								<label fontSize="18" tag="ll" color="#DDDDDD" value=" "></label>
+								<label fontSize="20" tag="mtitle" color="#000000"></label>
+							</div>
+							<div width="100%" height="100%" vAlign="middle" hAlign="left" >
+								<label fontSize="18" tag="ll" color="#DDDDDD" value="  "></label>
+								<label fontSize="18" tag="mcontent" color="#DDDDDD"></label>
+							</div>
+							<div width="100%" height="100%" vAlign="middle" hAlign="left" >
+								<input height="40" type="button" value="回复消息" onClick="function(){alert('弹出选择框，优选回复消息，可以选择回复邮件。')}"/>
+								<input height="40" type="button" value="语音通话" onClick="function(){alert('弹出选择框，选择免费语音或者拨打电话。确认WIFI环境，通过流量免费通话。')}"/>
+								<label fontSize="14" tag="mfrom" color="#DDDDDD"></label>
+								<label fontSize="18" tag="ll" color="#DDDDDD" value=" "></label>
+							</div>
+						</div>
+						<div width="10" height="100%" vAlign="middle" hAlign="center">
+							<label fontSize="20" tag="rspace" color="#000000"></label>
+						</div>
+					</div>
+					
+				</div>
+			</template>
+		</listview>
+	</div>
+</div>
+</BODY>
+<SCRIPT>
+var index = 1;
+var items = [
+	{
+		time : "2014-08-15 12:40",
+		mtitle : "8月份工资单",
+		mcontent : "8月份工资单,本月工资共100,000 USD,扣税2,000USD.注意查看账户。……",
+		mfrom : "人力资源部",
+		action : ""
+	},
+	{
+		time : "2014-08-15 12:40",
+		mtitle : "瑜伽有形，健康无价……",
+		mcontent : "瑜伽有形，健康无价——普元第二季瑜伽公开课，欢迎报名！……",
+		mfrom : "徐艳琴",
+		action : ""
+	},
+	{
+		time : "2014-08-15 12:40",
+		mtitle : "Re: Re: 请帮忙尽快把对外所有投入人员工时发给我，多谢！",
+		mcontent : "你在这边的工时怎么统计出来啊？你都是报工在对外经贸信托项目？2014-08-19徐茂贵……",
+		mfrom : "徐茂贵",
+		action : ""
+	},
+	{
+		time : "2014-08-15 12:40",
+		mtitle : "	Re:回复: 关于 外贸信托 按钮标签封装进度 ",
+		mcontent : "岳辛：    你好，信托这边的工作，春力负责标签的生成，我负责具体弹出页面，页面数据查询，……",
+		mfrom : "邸学寅",
+		action : ""
+	},
+	{
+		time : "2014-08-15 12:40",
+		mtitle : "8月份工资单",
+		mcontent : "8月份工资单",
+		mfrom : "人力资源部",
+		action : ""
+	},
+	{
+		time : "2014-08-15 12:40",
+		mtitle : "	Re: Fw: 求助：5大行分行IT建设方面资料 ",
+		mcontent : "绝对重量级 PPT--  焦烈焱",
+		mfrom : "焦烈炎",
+		action : ""
+	},
+	{
+		time : "2014-08-15 12:40",
+		mtitle : "	答复: 本周末的培训我参加不了了",
+		mcontent : "收到。成燕",
+		mfrom : "人力资源部",
+		action : ""
+	}
+];
+listview.setItems(items);
+listview.addEvent("onItemClick", function(row, tag, data) {
+	Emp.page.goTo(data.action, {name : data.name});
+});
+function goBack(){
+	Emp.page.goBack();
+}
+</SCRIPT>
+</HTML>

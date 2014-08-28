@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+<title>nav+listview</title>
+</HEAD>
+<BODY>
+	<div width="100%" height="50" layout="HBox" backgroundColor="#2A6E91">
+		<div width="6" height="100%" vAlign="middle" hAlign="left">
+		</div>
+		<div width="300" height="100%" vAlign="middle" hAlign="left">
+			<img  width="30" height="30" tag="timg"  src="/image/back.png" onClick="goBack"/>
+			<label fontSize="18" tag="title" color="#DDDDDD" value="客户信息" onClick="goBack"></label>
+		</div>
+		<div width="100%" height="100%" vAlign="middle" hAlign="right">
+			<img  width="30" height="30" tag="timg"  src="/image/config.png" onClick="goBack"/>
+		</div>
+		<div width="8" height="100%" vAlign="middle" hAlign="left">
+		</div>
+	</div>
+    <img  width="100%" height="100%" tag="timg"  src="/image/crm_accounts.png" onClick="goBack"/>
+</BODY>
+<SCRIPT>
+
+function goBack(){
+	Emp.page.goBack();
+}
+</SCRIPT>
+</HTML>
