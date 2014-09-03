@@ -1,35 +1,43 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8"/>
-<title>nav+listview</title>
+<title>流程列表</title>
 </HEAD>
 <BODY>
-	<div width="100%" height="50" layout="HBox" backgroundColor="#2A6E91">
-		<div width="6" height="100%" vAlign="middle" hAlign="left">
-		</div>
-		<div width="300" height="100%" vAlign="middle" hAlign="left">
-			<img  width="30" height="30" tag="timg"  src="/image/back.png" onClick="goBack"/>
-			<label fontSize="18" tag="title" color="#DDDDDD" value="流程追踪" onClick="goBack"></label>
-		</div>
-		<div width="100%" height="100%" vAlign="middle" hAlign="right">
-			<img  width="30" height="30" tag="timg"  src="/image/config.png" onClick="goBack"/>
-		</div>
-		<div width="8" height="100%" vAlign="middle" hAlign="left">
-		</div>
-	</div>
-	<div width="100%" height="40" layout="VBox">
-		<div width="100%" height="100%" vAlign="middle" hAlign="left" layout="HBox">
-			<div  width="10" height="100%" vAlign="middle" hAlign="center" ></div>
-			<input type="date" name="date" value="2014-01-01" width="170" height="40"/>
-			<div  width="10" height="100%" vAlign="middle" hAlign="center" ></div>
-			<input type="text" name="search" height="60" width="130" />
-			<img  width="40" height="40" src="/flow/search.jpg"/>
-			<div  width="20" height="100%" vAlign="middle" hAlign="center" ></div>
-		</div>
-		<div width="100%" height="2" backgroundColor="#CCCCCC"></div>
-	</div>
+	<input type="label" id="mk1" ></input>
 	<div width="100%" height="100%" layout="VBox">
-		<listview id="listview" width="100%" height="100%" enablePullDown="true" onLoadMore="refresh">
+		
+		<div width="100%" height="35" layout="HBox" backgroundColor="#EEEEEE">
+			<div width="6" height="100%" vAlign="middle" hAlign="left">
+			</div>
+			<div id="typecontainer" width="100%" height="100%" vAlign="middle" hAlign="left">
+				<input id="all" type="label" value="全" fontSize="20" paddingLeft="4" paddingRight="6" paddingBottom="2"  onClick="function(){togolButton(all);}"/>
+				<input id="all_b" type="label" fontSize="14" color="#FF0000" value=""/>
+				<input id="types" type="label" value="合同" fontSize="20" paddingLeft="4" paddingRight="6" paddingBottom="2"  onClick="function(){togolButton(types);}"/>
+				<input id="types_b" type="label" fontSize="14" color="#FF0000"/>
+				<input id="loan" type="label" value="贷款" fontSize="20" paddingLeft="4" paddingRight="6" paddingBottom="2"  onClick="function(){togolButton(loan);}"/>
+				<input id="loan_b" type="label" fontSize="14" color="#FF0000"/>
+				<input id="projects" type="label" value="项目" fontSize="20" paddingLeft="4" paddingRight="6" paddingBottom="2"  onClick="function(){togolButton(projects);}"/>
+				<input id="projects_b" type="label" fontSize="14" color="#FF0000"/>
+				<input id="oas" type="label" value="OA" fontSize="20" paddingLeft="4" paddingRight="6" paddingBottom="2"  onClick="function(){togolButton(oas);}"/>
+				<input id="oas_b" type="label" fontSize="14" color="#FF0000"/>
+				<input id="products" type="label" value="产品" fontSize="20" paddingLeft="4" paddingRight="6" paddingBottom="2"  onClick="function(){togolButton(products);}"/>
+				<input id="products_b" type="label" fontSize="14" color="#FF0000"/>
+			</div>
+			<div width="8" height="100%" vAlign="middle" hAlign="left">
+			</div>
+		</div>
+		<div width="100%" height="35" layout="HBox" backgroundColor="#EEEEEE">
+			<div width="6" height="100%" vAlign="middle" hAlign="left">
+			</div>
+			<div id="typecontainer1" width="100%" height="100%" vAlign="middle" hAlign="left">
+				<input type="button" value="查询" onClick="function(){readWorkList('sysadmin');}"/>
+			</div>
+			<div width="8" height="100%" vAlign="middle" hAlign="left">
+			</div>
+		</div>
+		
+		<listview id="listview" width="100%" height="100%" enablePullDown="true" enablePullUp="true" onLoadMore="refresh">
 			<template>
 				<div width="100%" height="60" layout="VBox">
 					<div width="100%" height="100%" vAlign="middle" hAlign="left" layout="HBox">
@@ -201,12 +209,191 @@ listview.addEvent("onItemClick", function(row, tag, data) {
 function goBack(){
 	Emp.page.goBack();
 }
+
+//按按钮
+var togolobj = null;
+function togolButton(bt){
+	var ibt = null;
+	if(typeof(bt) == "string"){
+		alert(bt);
+		ibt = eval(bt);
+	}else{
+		ibt = bt;
+	}
+	
+	//首次点击
+	if(togolobj==null){
+		ibt.setBackgroundColor("#FFFFFF");
+		togolobj = ibt;
+	}
+	//二次点击
+	else{
+		if(togolobj==ibt){
+			bt.setBackgroundColor("#EEEEEE");
+			togolobj = null;
+		}
+		else{
+			togolobj.setBackgroundColor("#EEEEEE");
+			ibt.setBackgroundColor("#FFFFFF");
+			togolobj = ibt;
+		}
+	}
+}
+togolButton(all);
+
 <!-- 下拉刷新 -->
 function refresh(eventype){
 	if(eventype == "pullDown" ){
+		load_set_budges();
 		listview.resetScroller();
-		alert("没有更新");
 	}
-};
+	if(eventype == "pullUp" ){
+		//listview.resetScroller();
+		alert("没有历史信息。");
+	}
+}
+
+//本地缓存的文件路径
+var cbFile = "sd://com.primeton.weixing/budgecache.json";
+//读取流程本地角标缓存
+function readCachedBudge(){
+	var f=new $M.File(cbFile);
+	if(f.exists()){
+		return eval('(' + $M.FileUtil.readFile(filePath) + ')');
+	}
+	else{
+		return [{}];
+	}
+}
+//写本地角标缓存
+function writeCachedBudge(budges){
+	var f=new $M.File(cbFile);
+	
+	if(!f.exists()){
+		f.createFile();
+	}
+	
+	$M.FileUtil.writeFile(filePath,budges.toJSONString());
+	
+}
+
+function readServerBudge1(){
+		var result = [
+	{	
+		type:"all",
+		value:"34"
+	},
+	{	
+		type:"types",
+		value:"10"
+	},
+	{	
+		type:"loan",
+		value:"9"
+	},
+	{	
+		type:"projects",
+		value:"8"
+	},
+	{	
+		type:"products",
+		value:"7"
+	},
+	];
+	return result;
+}
+//读取服务端角标缓存
+function readServerBudge(){
+	var ss = "http://192.168.10.163:7001/portal/com.gocom.portal.worklist.taskcenter.quertyBizType.biz.ext"
+	var ajax = new $M.Ajax();
+	ajax.addParam({key:'person',value:'m'});
+	ajax.setAction(ss);
+	ajax.submit(function(result){backup(result)},function(error){alert(error);});
+}
+//设置角标显示
+function setBudges(budges){
+	if(budges != null){
+		for(var i=0;i<budges.length;i++){
+			var stype = budges[i].type;
+			var svalue = budges[i].value;
+			eval(stype+"_b").setValue(svalue);
+		}
+	}
+}
+//读取并设置服务器角标
+function load_set_budges(){
+	var bus = readServerBudge1();
+	setBudges(bus);
+}
+
+//读取本地缓存的流程类型
+function readCachedFlowTypes(){
+}
+//将流程类型写入本地缓存
+function writeCachedFlowTypes(types){
+}
+var rrtn = null;
+//读取服务端流程类型
+function readServerFlowTypes(){
+	//var ss = "http://192.168.10.163:8082/default/com.primeton.wx.flow.worklist.taskcenter.quertyBizType.biz.ext";
+	var ss = "http://192.168.43.73:8080/server/flowTypes.jsp";
+	var ajax = new $M.Ajax();
+	ajax.add("userid","sysadmin");
+	ajax.setAction(ss);
+	
+	//回调函数
+	ajax.submit(function(result){
+			var tm = eval("("+result+")");
+			setTypes(tm.bizTypes);
+		},function(error){alert(error);});
+	
+}
+//设置流程类型显示
+function setTypes(types){
+	if(types != null){
+		for(var i=0;i<types.length;i++){
+			var stype = types[i].tasktype;
+			sett1(stype);
+		}
+	}
+}
+//设值函数
+function sett1(stype){
+	var lbn = new $M.Label({
+		"id" : stype,
+		"value" : stype,
+		"fontSize" : 20,
+		"paddingLeft" : 4,
+		"paddingRight" : 6,
+		"paddingBottom" : 2
+	});
+	lbn.addEvent("onClick",function(){togolButton(lbn);});
+	
+	var lb = new $M.Label({
+		"id" : stype+"_b",
+		"fontSize" : 20,
+		"color" : "#FF0000"
+	});
+	
+	typecontainer1.add(lbn);
+	typecontainer1.add(lb);
+}
+
+function testSet(){
+	readServerFlowTypes();
+}
+testSet();
+
+//读取流程列表
+function readWorkList(userid){
+	var ss = "http://192.168.10.163:8082/default/com.primeton.wx.flow.worklist.taskcenter.quertyBizType.biz.ext";
+	var ajax = new $M.Ajax();
+	ajax.add("userid","sysadmin");
+	ajax.setAction(ss);
+	ajax.submit(function(result){alert(result)},function(error){alert(error);});
+}
+//设置流程列表
+function setWorkList(){
+}
 </SCRIPT>
 </HTML>
