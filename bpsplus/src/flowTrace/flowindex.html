@@ -1,0 +1,197 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+<title>流程</title>
+</HEAD>
+<BODY>
+	<!-- config menu -->
+	<div id="mmls"  width="100%" height="100%" tag="n" position="relative" left="0" top="45" backgroundColor="#FFFFFF" opacity="0.4" display="false" onClick="showmenu">
+		<div  width="200" tag="n" height="400" backgroundColor="#000000" position="relative" left="160" top="0"  opacity="0.8" onClick="function(){}"></div>
+	</div>
+	<div width="100%" height="45" layout="HBox" backgroundColor="#2A6E91">
+		<div width="6" height="100%" vAlign="middle" hAlign="left">
+		</div>
+		<div width="120" height="100%" vAlign="middle" hAlign="left">
+			<img  width="30" height="30" tag="timg"  src="/image/back.png" onClick="goBack"/>
+			<label fontSize="18" tag="title" color="#DDDDDD" value="流程中心" onClick="goBack"></label>
+		</div>
+		<div width="100%" height="100%" vAlign="middle" hAlign="right">
+			<img  width="30" height="30" tag="timg"  src="/image/config.png" onClick="showmenu"/>
+		</div>
+		<div width="8" height="100%" vAlign="middle" hAlign="left">
+		</div>
+	</div>
+	<div  width="100%" height="40" layout="HBox"  vAlign="middle" hAlign="center" id="confluence">
+		<div  width="100%" height="100%"  vAlign="middle" hAlign="center" id="test" onClick="clickTest1">
+		 	<input type="label" id="dev" value="待办" fontSize="18"  color="#0077EC" />
+		</div> 
+		<div  width="100%" height="100%"  vAlign="middle" hAlign="center" onClick="clickTest2">
+		 	<input type="label" id="test" value="收藏" fontSize="18" /> 
+		</div> 
+		<div  width="100%" height="100%"  vAlign="middle" hAlign="center" onClick="clickTest3">    
+		 	<input type="label" id="other" value="发起" fontSize="18" />
+		</div>
+		<div  width="100%" height="100%"  vAlign="middle" hAlign="center" onClick="clickTest4">    
+		 	<input type="label" id="search" value="查找" fontSize="18" />
+		</div>
+	</div>
+   <div  width="100%" height="3">
+		<div  width="90" id="mark" height="3" backgroundColor="#0077EC" display="true" position="absolute" ></div> 
+	</div>
+	<div width="100%" height="0.5" backgroundColor="#AAAAAA"></div>
+  <slide id="mainSilde" >
+	  <slideurl url="/flowTrace/taskList.html"/>
+	  <slideurl url="/create/create.html"/>
+	  <slideurl url="/contracts/contracts.html"/>
+	  <slideurl url="/flowTrace/flowSearch.html"/>
+  </slide>
+  
+  <dialog id="configdialog" canceledOnTouchOutside="true" width="100%" height="100%" >
+  	<div width="100%" height="100%" vAlign="top" hAlign="center" backgroundColor="#FFFFFF" >
+		<input type="label" value="我的弹出窗口" />
+		<input type="button" value="close" onClick="closeDailog"/>
+  	</div>
+   </dialog>
+</BODY>
+<script>
+//跳转传参数
+$M.page.addEvent("onLoad",function(args){});
+//返回传参数
+$M.page.addEvent("onBack",function(args){});
+
+mainSilde.addEvent("onChange",function(o,n){   
+	  if(n=="0")     
+	   {    
+		    dev.setColor("#0077EC");
+		    test.setColor("#000000");
+		    other.setColor("#000000");
+		    search.setColor("#000000");
+		    move(90,0);
+	   }
+	    if(n=="1")   
+	   {   
+		    dev.setColor("#000000");
+		    test.setColor("#0077EC");
+		    other.setColor("#000000");
+		    search.setColor("#000000");
+		    if(o=="0"){
+		    	move(0,90);	
+		    }
+		    if(o=="2"){
+		    	move(180,90);
+		    }
+		    if(o=="3"){
+		    	move(270,90);
+		    }
+	   } 
+	    if(n=="2")     
+	   {          
+		    dev.setColor("#000000");
+		    test.setColor("#000000");
+		    other.setColor("#0077EC");
+		    search.setColor("#000000");
+		    if(o=="0"){
+		    	move(0,180);	
+		    }
+		    if(o=="1"){
+		    	move(90,180);
+		    }
+		    if(o=="3"){
+		    	move(270,180);
+		    }
+	   }
+	    if(n=="3")     
+	   {          
+		    dev.setColor("#000000");
+		    test.setColor("#000000");
+		    other.setColor("#000000");
+		    search.setColor("#0077EC");
+		    if(o=="0"){
+		    	move(0,270);	
+		    }
+		    if(o=="1"){
+		    	move(90,270);
+		    }
+		    if(o=="2"){
+		    	move(180,270);
+		    }
+	   }
+	});
+    function clickTest1(){
+    	mainSilde.setSelectedIndex("0");
+    }
+    function clickTest2(){
+    	mainSilde.setSelectedIndex("1");
+    }
+    function clickTest3(){
+    	mainSilde.setSelectedIndex("2");
+    }
+    function clickTest4(){
+    	mainSilde.setSelectedIndex("3");
+    }
+    
+    function move(fx,tx){
+		mark.clearAnimation();
+		var an1 = new $M.TranslateAnimation({
+			fromX :fx,
+			toX : tx,
+			toY : 0,
+			fromY : 0, 
+			duration : 250
+		});         
+		mark.addAnimation(an1);
+		mark.startAnimation();
+	}
+	
+	//显示菜单
+	function showmenu(){
+		if(mmls.getTag()=="d"){
+			mmls.setTag("n");
+			
+			var anim = new $M.AlphaAnimation({
+				fromAlpha : 0.8,
+				toAlpha : 0,
+				duration : 100
+			});
+			
+			anim.addEvent("onAnimationEnd",function(){mmls.setDisplay(false);mmls.clearAnimation();});
+			mmls.addAnimation(anim);
+			mmls.startAnimation();
+			
+		}else{
+			mmls.setTag("d");
+			mmls.setDisplay(true);
+			var anim = new $M.AlphaAnimation({
+				fromAlpha : 0,
+				toAlpha : 0.8,
+				duration : 100
+			});
+			anim.addEvent("onAnimationEnd",function(){mmls.clearAnimation();});
+			mmls.addAnimation(anim);
+			mmls.startAnimation();
+
+		}
+	}
+	
+	
+	function showDailog(){
+		configdialog.show();
+	}
+	function closeDailog(){
+		configdialog.close();
+	}
+	function scanCode(){
+		Utils.startBarCodeScanner(function(content){alert(content)});
+	}
+	function goPass(){
+		Emp.page.goTo("/security/password.html");
+	}
+	function goMain(){
+		Emp.page.goTo("/main.html");
+	}
+	function goBack(){
+		Emp.page.goBack();
+	}
+	
+</script>
+</HTML>
